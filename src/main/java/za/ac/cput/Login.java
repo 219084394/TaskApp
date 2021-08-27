@@ -12,7 +12,7 @@ public class Login extends JFrame implements ActionListener{
 
     private JPanel panelNorth, panelCenter, panelSouth;
     private JLabel lblUsername, lblPassword, lblImage;
-    private JTextField userName;
+    protected JTextField userName;
     private JPasswordField password;
     private JButton btnSubmit, btnSignUp;
     private ImageIcon image;
@@ -146,13 +146,13 @@ public class Login extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Password entered is too short");
             }
             try{
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb?autoReconnect=true&useSSL=false", "root", "");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tableinfo?autoReconnect=true&useSSL=false", "root", "");
                 String username = userName.getText();
                 String password3 = password.getText();
 
                 Statement stm = con.createStatement();
 
-                String sql= "SELECT * FROM tableinfo WHERE Student_Number='"+ username+"' and Password='"+password3+"'";
+                String sql= "SELECT * FROM login WHERE Student_Number='"+ username+"' and Password='"+password3+"'";
                 ResultSet rs = stm.executeQuery(sql);
 
                 if(rs.next()){

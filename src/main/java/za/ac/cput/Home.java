@@ -78,6 +78,8 @@ public class Home extends JFrame implements ActionListener {
         }
         else if (e.getActionCommand().equals("View Tasks")) {
             JOptionPane.showMessageDialog(null, "Displaying tasks");
+            Crud run = new Crud();
+            run.setGUI();
         }
         else if (e.getActionCommand().equals("View Progress")) {
             JOptionPane.showMessageDialog(null, "Showing progress");

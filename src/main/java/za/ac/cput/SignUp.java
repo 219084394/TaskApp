@@ -170,13 +170,13 @@ public class SignUp extends JFrame implements ActionListener{
             }
             if(input.length == confirmation.length && password1.equals(password2)){
                 try{
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb?autoReconnect=true&useSSL=false", "root", "");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tableinfo?autoReconnect=true&useSSL=false", "root", "");
                     String un = userName.getText();
                     String pd = password.getText();
 
                     Statement stm = con.createStatement();
 
-                    String sql= "INSERT INTO tableinfo" + "(Student_Number, Password)" + "VALUES('" +un+"', '"+pd+"')";
+                    String sql= "INSERT INTO login" + "(Student_Number, Password)" + "VALUES('" +un+"', '"+pd+"')";
                     stm.executeUpdate(sql);
                     dispose();
                     Home home = new Home();
