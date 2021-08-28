@@ -23,6 +23,7 @@ public class Crud extends Login{
     private JTextField srchTxt;
     private JButton srchBtn;
     private JPanel taskFieldPanel;
+    private JLabel dateFromat;
     private JButton reloadButton;
 
 
@@ -34,11 +35,6 @@ public class Crud extends Login{
         frame.setVisible(true);
         frame.setResizable(false);
     }
-
- /*   private void columnSize(){
-        table1.getColumnModel().getColumn(1).setMinWidth(0);
-        table1.getColumnModel().getColumn(1).setMaxWidth(0);
-    }*/
 
     Connection con2;
     PreparedStatement pst;
@@ -74,6 +70,7 @@ public class Crud extends Login{
 
                 int taskId, studentNumber;
                 String taskName, course, taskDescription, dueDate;
+                dueTxt.setColumns(8);
 
                 taskName = taskNameTxt.getText();
                 course = courseTxt.getText();
