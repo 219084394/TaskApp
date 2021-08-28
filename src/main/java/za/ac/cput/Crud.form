@@ -165,7 +165,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="00-00-0000"/>
+            </properties>
           </component>
           <scrollpane id="eec82">
             <constraints>
@@ -208,6 +210,15 @@
               </grid>
             </constraints>
           </vspacer>
+          <component id="35b36" class="javax.swing.JLabel" binding="dateFromat">
+            <constraints>
+              <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font style="2"/>
+              <text value="Please use this format: dd-mm-yyyy"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <vspacer id="4e0cc">
