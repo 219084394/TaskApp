@@ -9,7 +9,6 @@ import java.sql.*;
 
 public class Crud extends Login{
     private JPanel CtForm;
-    private JLabel taskHdLabel;
     public JTable table1;
     private JButton taskAddBtn;
     private JButton taskEditBtn;
@@ -24,6 +23,8 @@ public class Crud extends Login{
     private JButton srchBtn;
     private JPanel taskFieldPanel;
     private JLabel dateFromat;
+    private JPanel headingPanel;
+    private JLabel headingLablel;
     private JButton reloadButton;
 
 
