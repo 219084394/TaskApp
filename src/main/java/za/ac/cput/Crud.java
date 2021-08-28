@@ -67,11 +67,11 @@ public class Crud extends Login{
 
     public Crud() {
         Connect();
-        /*columnSize();*/
         table_load();
         taskAddBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 int taskId, studentNumber;
                 String taskName, course, taskDescription, dueDate;
 
@@ -82,21 +82,24 @@ public class Crud extends Login{
                 studentNumber = 219084394;
 
                 try{
-                    pst = con2.prepareStatement("insert into tasks(Student_Number,TaskName,Course,TaskDescription,DueDate)values(?,?,?,?,?)");
-                    pst.setInt(1,studentNumber);
-                    pst.setString(2,taskName);
-                    pst.setString(3,course);
-                    pst.setString(4,taskDescription);
-                    pst.setString(5,dueDate);
-                    pst.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Task Added");
-                    table_load();
-                    taskNameTxt.setText("");
-                    courseTxt.setText("");
-                    descTxt.setText("");
-                    dueTxt.setText("");
-                    taskNameTxt.requestFocus();
-
+                    if(taskName.equals("")){
+                        JOptionPane.showMessageDialog(null, "No fields added");
+                    }else {
+                        pst = con2.prepareStatement("insert into tasks(Student_Number,TaskName,Course,TaskDescription,DueDate)values(?,?,?,?,?)");
+                        pst.setInt(1,studentNumber);
+                        pst.setString(2,taskName);
+                        pst.setString(3,course);
+                        pst.setString(4,taskDescription);
+                        pst.setString(5,dueDate);
+                        pst.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Task Added");
+                        table_load();
+                        taskNameTxt.setText("");
+                        courseTxt.setText("");
+                        descTxt.setText("");
+                        dueTxt.setText("");
+                        taskNameTxt.requestFocus();
+                    }
                 }catch(SQLException e1){
                     e1.printStackTrace();
                 }
@@ -108,6 +111,7 @@ public class Crud extends Login{
         taskEditBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 int studentNumber;
                 String taskName, course, taskDescription, dueDate,taskId;
 
@@ -126,7 +130,11 @@ public class Crud extends Login{
                     pst.setString(4,dueDate);
                     pst.setString(5,taskId);
                     pst.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Task Updated");
+                    if(taskId.equals("")){
+                        JOptionPane.showMessageDialog(null, "No task loaded");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Task Updated");
+                    }
                     table_load();
                     taskNameTxt.setText("");
                     courseTxt.setText("");
@@ -148,8 +156,11 @@ public class Crud extends Login{
                     pst = con2.prepareStatement("select TaskName,Course,TaskDescription,DueDate from tasks where TaskId = ?");
                     pst.setString(1,id);
                     ResultSet rs = pst.executeQuery();
+                    if(id.equals("")){
+                        JOptionPane.showMessageDialog(null, "Task ID not entered");
+                    }
 
-                    if(rs.next() == true)
+                    else if(rs.next() == true)
                     {
                         String TaskName = rs.getString(1);
                         String Course = rs.getString(2);
@@ -160,6 +171,7 @@ public class Crud extends Login{
                         courseTxt.setText(Course);
                         descTxt.setText(TaskDescription);
                         dueTxt.setText(DueDate);
+                        JOptionPane.showMessageDialog(null, "Task loaded");
 
                     }else {
                         taskNameTxt.setText("");
@@ -184,7 +196,11 @@ public class Crud extends Login{
                         pst = con2.prepareStatement("delete from tasks where TaskId = ?");
                         pst.setString(1,taskId);
                         pst.executeUpdate();
-                        JOptionPane.showMessageDialog(null,"Task deleted");
+                        if(taskId.equals("")){
+                            JOptionPane.showMessageDialog(null, "No task loaded");
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Task Deleted");
+                        }
                         table_load();
                         taskNameTxt.setText("");
                         courseTxt.setText("");
