@@ -43,12 +43,12 @@ public class Login extends JFrame implements ActionListener{
     }
     public void setLogin(){
         panelNorth.setLayout(new GridLayout(1,1));
-        panelCenter.setLayout(new GridLayout(4,3, 3, 2));
+        panelCenter.setLayout(new GridLayout(4,3, 3, 4));
         panelSouth.setLayout(new GridLayout(1,1));
 
-        panelNorth.setBorder(BorderFactory.createEmptyBorder(25,25,5,25));
-        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,25,50,25));
-        panelSouth.setBorder(BorderFactory.createEmptyBorder(0,25,25,25));
+        panelNorth.setBorder(BorderFactory.createEmptyBorder(25,15,5,15));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,15,50,15));
+        panelSouth.setBorder(BorderFactory.createEmptyBorder(0,15,25,15));
 
         //make error messages red
         lblErrorOne.setForeground(Color.RED);
@@ -56,6 +56,11 @@ public class Login extends JFrame implements ActionListener{
 
         //adding image to GUI
         lblImage.setIcon(image);
+
+        lblUsername.setForeground(Color.white);
+        lblPassword.setForeground(Color.white);
+        checkBox.setForeground(Color.white);
+        btnSignUp.setForeground(Color.white);
 
         //hides password
         password.setEchoChar('*');
@@ -69,13 +74,16 @@ public class Login extends JFrame implements ActionListener{
         checkBox.setContentAreaFilled(false);
 
         //setting the GUI Background Color
-        panelNorth.setBackground(new Color(255,205,108));
-        panelCenter.setBackground(new Color(255,205,108));
-        panelSouth.setBackground(new Color(255,205,108));
+        panelNorth.setBackground(new Color(0,29,64));
+        panelCenter.setBackground(new Color(0,29,64));
+        panelSouth.setBackground(new Color(0,29,64));
 
         //Error Handling set to invisible
         lblErrorOne.setVisible(false);
         lblErrorTwo.setVisible(false);
+
+        btnSubmit.setBackground(new Color(250, 134, 0));
+        btnSubmit.setForeground(Color.white);
 
         //Adding necessary components to GUI
         panelNorth.add(lblImage);
@@ -110,7 +118,6 @@ public class Login extends JFrame implements ActionListener{
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
     }
     @Override
     public void actionPerformed(ActionEvent e) {

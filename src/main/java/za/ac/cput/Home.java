@@ -24,26 +24,37 @@ public class Home extends JFrame implements ActionListener {
     }
     public void setGUI(){
         panelNorth.setLayout(new GridLayout(1,1));
-        panelCenter.setLayout(new GridLayout(2,2,3,3));
+        panelCenter.setLayout(new GridLayout(4,1,0,6));
         panelSouth.setLayout(new GridLayout(1,1));
 
         panelNorth.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,90,100,90));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(70,120,70,120));
         panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,25,250));
 
         //setting the GUI Background Color
-        panelNorth.setBackground(new Color(255,205,108));
-        panelCenter.setBackground(new Color(255,205,108));
-        panelSouth.setBackground(new Color(255,205,108));
+        panelNorth.setBackground(new Color(0,29,64));
+        panelCenter.setBackground(new Color(0,29,64));
+        panelSouth.setBackground(new Color(0,29,64));
 
-        btnTask.setPreferredSize(new Dimension(60, 40));
-        btnNotification.setPreferredSize(new Dimension(60, 40));
-        btnProgress.setPreferredSize(new Dimension(60, 40));
-        btnCalender.setPreferredSize(new Dimension(60, 40));
+        btnTask.setPreferredSize(new Dimension(10, 40));
+        btnNotification.setPreferredSize(new Dimension(10, 40));
+        btnProgress.setPreferredSize(new Dimension(10, 40));
+        btnCalender.setPreferredSize(new Dimension(10, 40));
 
-        btnLogOut.setPreferredSize(new Dimension(90, 40));
+        btnTask.setBackground(new Color(250, 134, 0));
+        btnTask.setForeground(Color.white);
+        btnNotification.setBackground(new Color(250, 134, 0));
+        btnNotification.setForeground(Color.white);
+        btnProgress.setBackground(new Color(250, 134, 0));
+        btnProgress.setForeground(Color.white);
+        btnCalender.setBackground(new Color(250, 134, 0));
+        btnCalender.setForeground(Color.white);
 
-        panelNorth.add(lblWelcome);
+        btnLogOut.setPreferredSize(new Dimension(70, 40));
+        btnLogOut.setContentAreaFilled(false);
+        btnLogOut.setBorder(null);
+        btnLogOut.setBorderPainted(false);
+        btnLogOut.setForeground(Color.white);
 
         panelCenter.add(btnCalender);
         panelCenter.add(btnTask);
