@@ -45,7 +45,7 @@ public class SignUp extends JFrame implements ActionListener{
     }
     public void setSignUp(){
         panelNorth.setLayout(new GridLayout(1,1));
-        panelCenter.setLayout(new GridLayout(5,3, 3, 2));
+        panelCenter.setLayout(new GridLayout(5,3, 3, 4));
         panelSouth.setLayout(new GridLayout(1,1));
 
         panelNorth.setBorder(BorderFactory.createEmptyBorder(25,25,5,25));
@@ -73,9 +73,18 @@ public class SignUp extends JFrame implements ActionListener{
         btnLogin.setBorderPainted(false);
 
         //setting the GUI Background Color
-        panelNorth.setBackground(new Color(255,205,108));
-        panelCenter.setBackground(new Color(255,205,108));
-        panelSouth.setBackground(new Color(255,205,108));
+        panelNorth.setBackground(new Color(0,29,64));
+        panelCenter.setBackground(new Color(0,29,64));
+        panelSouth.setBackground(new Color(0,29,64));
+
+        lblUsername.setForeground(Color.white);
+        lblPassword.setForeground(Color.white);
+        lblPasswordConfirm.setForeground(Color.white);
+        checkBox.setForeground(Color.white);
+        btnLogin.setForeground(Color.white);
+
+        btnSubmit.setBackground(new Color(250, 134, 0));
+        btnSubmit.setForeground(Color.white);
 
         //Error Handling set to invisible
         lblErrorOne.setVisible(false);
