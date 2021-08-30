@@ -20,11 +20,15 @@ public class Crud extends Login{
     private JPanel taskFieldsBtnPanel;
     private JTextArea descTxt;
     private JTextField srchTxt;
+    private JTextField load;
     private JButton srchBtn;
     private JPanel taskFieldPanel;
     private JLabel dateFromat;
     private JPanel headingPanel;
     private JLabel headingLablel;
+    private JButton addSubtaskButton;
+    private JButton clearBtn;
+    private JButton loadUser;
     private JButton reloadButton;
 
 
@@ -35,13 +39,15 @@ public class Crud extends Login{
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+
     }
 
     Connection con2;
     PreparedStatement pst;
     public void Connect(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con2 = DriverManager.getConnection("jdbc:mysql://localhost/tableinfo","root","");
             System.out.println("success");
         }catch (ClassNotFoundException ex){
@@ -53,7 +59,6 @@ public class Crud extends Login{
 
     void table_load(){
         try{
-            String username = userName.getText();
             pst = con2.prepareStatement("select * from tasks");
             ResultSet rs = pst.executeQuery();
             table1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -211,8 +216,29 @@ public class Crud extends Login{
                     }
             }
         });
+        addSubtaskButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SubTask run = new SubTask();
+                run.setGUI();
+            }
+        });
+
+        clearBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Clear")) {
+                    taskNameTxt.setText("");
+                    courseTxt.setText("");
+                    descTxt.setText("");
+                    srchTxt.setText("");
+                    taskNameTxt.requestFocus();
+                }
+            }
+        });
     }
     public static void main(String[] args) {
         new Crud().setGUI();
+
     }
 }
