@@ -34,6 +34,8 @@ public class SubTask {
     private JButton SubClearBtn;
     private JPanel clearBtnPanel;
     private JButton TaskClrBtn;
+    protected String x = Crud.sT;
+
 
     Connection con2;
     PreparedStatement pst;
@@ -51,7 +53,7 @@ public class SubTask {
 
     void table_load(){
         try{
-            pst = con2.prepareStatement("select * from subtask");
+            pst = con2.prepareStatement("select * from subtask where TaskId='"+x+"'");
             ResultSet rs = pst.executeQuery();
             table2.setModel(DbUtils.resultSetToTableModel(rs));
         }catch(SQLException e){
@@ -77,7 +79,7 @@ public class SubTask {
             public void actionPerformed(ActionEvent e) {
                 try{
                     String id = srchTxt.getText();
-                    pst = con2.prepareStatement("select TaskName,Course,TaskDescription,DueDate from tasks where TaskId = ?");
+                    pst = con2.prepareStatement("select TaskName,CourseCode,TaskDescription,DueDate from tasks where TaskId = ?");
                     pst.setString(1,id);
                     ResultSet rs = pst.executeQuery();
                     if(id.equals("")){
@@ -113,8 +115,8 @@ public class SubTask {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int taskId = 8;
-                String taskName, course, taskDescription, dueDate;
+
+                String taskName,taskDescription, dueDate;
                 taskName = SubTaskTxtName.getText();
                 taskDescription = subDescTxt.getText();
                 dueDate = subDueDateTxt.getText();
@@ -124,11 +126,10 @@ public class SubTask {
                     if(taskName.equals("")){
                         JOptionPane.showMessageDialog(null, "No fields added");
                     }else {
-                        pst = con2.prepareStatement("insert into subtask(TaskId,SubTaskName,SubTaskDescription,DueDate)values(?,?,?,?)");
-                        pst.setInt(1,taskId);
-                        pst.setString(2,taskName);
-                        pst.setString(3,taskDescription);
-                        pst.setString(4,dueDate);
+                        pst = con2.prepareStatement("insert into subtask(TaskId,SubTaskName,SubTaskDescription,DueDate)values('"+x+"',?,?,?)");
+                        pst.setString(1,taskName);
+                        pst.setString(2,taskDescription);
+                        pst.setString(3,dueDate);
                         pst.executeUpdate();
                         JOptionPane.showMessageDialog(null, "Task Added");
                         table_load();
