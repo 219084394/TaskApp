@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class Crud extends Login{
+    protected static String sT;
     private JPanel CtForm;
     public JTable table1;
     private JButton taskAddBtn;
@@ -28,8 +29,10 @@ public class Crud extends Login{
     private JLabel headingLablel;
     private JButton addSubtaskButton;
     private JButton clearBtn;
+    private JComboBox comboBox1;
     private JButton loadUser;
     private JButton reloadButton;
+    String z = Login.uN;
 
 
     public void setGUI(){
@@ -50,6 +53,7 @@ public class Crud extends Login{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con2 = DriverManager.getConnection("jdbc:mysql://localhost/tableinfo","root","");
             System.out.println("success");
+            System.out.println(z);
         }catch (ClassNotFoundException ex){
 
         }catch (SQLException ex){
@@ -59,9 +63,10 @@ public class Crud extends Login{
 
     void table_load(){
         try{
-            pst = con2.prepareStatement("select * from tasks");
+            pst = con2.prepareStatement("select * from tasks where Student_Number='"+z+"'");
             ResultSet rs = pst.executeQuery();
             table1.setModel(DbUtils.resultSetToTableModel(rs));
+
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -88,7 +93,7 @@ public class Crud extends Login{
                     if(taskName.equals("")){
                         JOptionPane.showMessageDialog(null, "No fields added");
                     }else {
-                        pst = con2.prepareStatement("insert into tasks(Student_Number,TaskName,Course,TaskDescription,DueDate)values(?,?,?,?,?)");
+                        pst = con2.prepareStatement("insert into tasks(Student_Number,TaskName,CourseCode,TaskDescription,DueDate)values(?,?,?,?,?)");
                         pst.setInt(1,studentNumber);
                         pst.setString(2,taskName);
                         pst.setString(3,course);
@@ -126,7 +131,7 @@ public class Crud extends Login{
                 studentNumber = 219084394;
 
                 try{
-                    pst = con2.prepareStatement("update tasks set TaskName = ?,Course = ?,TaskDescription = ?,DueDate = ? where TaskId = ?");
+                    pst = con2.prepareStatement("update tasks set TaskName = ?,CourseCode = ?,TaskDescription = ?,DueDate = ? where TaskId = ?");
                     pst.setString(1,taskName);
                     pst.setString(2,course);
                     pst.setString(3,taskDescription);
@@ -156,7 +161,8 @@ public class Crud extends Login{
             public void actionPerformed(ActionEvent e) {
                 try{
                     String id = srchTxt.getText();
-                    pst = con2.prepareStatement("select TaskName,Course,TaskDescription,DueDate from tasks where TaskId = ?");
+
+                    pst = con2.prepareStatement("select TaskName,CourseCode,TaskDescription,DueDate from tasks where TaskId = ?");
                     pst.setString(1,id);
                     ResultSet rs = pst.executeQuery();
                     if(id.equals("")){
@@ -165,6 +171,7 @@ public class Crud extends Login{
 
                     else if(rs.next() == true)
                     {
+                        sT = id;
                         String TaskName = rs.getString(1);
                         String Course = rs.getString(2);
                         String TaskDescription = rs.getString(3);
