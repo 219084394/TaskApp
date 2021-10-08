@@ -1,6 +1,7 @@
 package za.ac.cput;
 
 import net.proteanit.sql.DbUtils;
+import za.ac.cput.Factory.SubCrud;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class Crud extends Login{
-    protected static String sT;
+    public static String sT;
     private JPanel CtForm;
     public JTable table1;
     private JButton taskAddBtn;
@@ -78,8 +79,6 @@ public class Crud extends Login{
         taskAddBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                int taskId, studentNumber;
                 String taskName, course, taskDescription, dueDate;
                 dueTxt.setColumns(8);
 
@@ -87,14 +86,14 @@ public class Crud extends Login{
                 course = courseTxt.getText();
                 taskDescription = descTxt.getText();
                 dueDate = dueTxt.getText();
-                studentNumber = 219084394;
+                String studentNumber = z;
 
                 try{
                     if(taskName.equals("")){
                         JOptionPane.showMessageDialog(null, "No fields added");
                     }else {
                         pst = con2.prepareStatement("insert into tasks(Student_Number,TaskName,CourseCode,TaskDescription,DueDate)values(?,?,?,?,?)");
-                        pst.setInt(1,studentNumber);
+                        pst.setString(1,studentNumber);
                         pst.setString(2,taskName);
                         pst.setString(3,course);
                         pst.setString(4,taskDescription);
@@ -120,7 +119,6 @@ public class Crud extends Login{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                int studentNumber;
                 String taskName, course, taskDescription, dueDate,taskId;
 
                 taskName = taskNameTxt.getText();
@@ -128,7 +126,6 @@ public class Crud extends Login{
                 taskDescription = descTxt.getText();
                 dueDate = dueTxt.getText();
                 taskId = srchTxt.getText();
-                studentNumber = 219084394;
 
                 try{
                     pst = con2.prepareStatement("update tasks set TaskName = ?,CourseCode = ?,TaskDescription = ?,DueDate = ? where TaskId = ?");
@@ -226,7 +223,7 @@ public class Crud extends Login{
         addSubtaskButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SubTask run = new SubTask();
+                SubCrud run = new SubCrud();
                 run.setGUI();
             }
         });

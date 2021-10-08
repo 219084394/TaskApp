@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener{
 
-    protected static String uN;
+    public static String uN;
     private JPanel panelNorth, panelCenter, panelSouth;
     private JLabel lblUsername, lblPassword, lblImage;
     protected JTextField userName;
