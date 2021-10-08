@@ -1,4 +1,7 @@
 package za.ac.cput;
+import za.ac.cput.Factory.MyCourse;
+import za.ac.cput.Factory.Task;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -86,10 +89,12 @@ public class Home extends JFrame implements ActionListener {
         }
         else if (e.getActionCommand().equals("View Notifications")) {
             JOptionPane.showMessageDialog(null, "Viewing notifications");
+            MyCourse myCourse = new MyCourse();
+            myCourse.setGUI();
         }
         else if (e.getActionCommand().equals("View Tasks")) {
             JOptionPane.showMessageDialog(null, "Displaying tasks");
-            Crud run = new Crud();
+            Task run = new Task();
             run.setGUI();
         }
         else if (e.getActionCommand().equals("View Progress")) {
