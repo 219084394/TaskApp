@@ -18,6 +18,7 @@ public class Login extends JFrame implements ActionListener{
     private ImageIcon image;
     private JLabel lblErrorOne, lblErrorTwo, lblBlank, lblBlankTwo, lblBlankThree, lblBlankFour, lblBlankFive;
     private JCheckBox checkBox;
+    protected static String uN;
 
     public Login(){
         super("Login");
@@ -156,10 +157,11 @@ public class Login extends JFrame implements ActionListener{
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tableinfo?autoReconnect=true&useSSL=false", "root", "");
                 String username = userName.getText();
                 String password3 = password.getText();
+                uN = username;
 
                 Statement stm = con.createStatement();
 
-                String sql= "SELECT * FROM login WHERE Student_Number='"+ username+"' and Password='"+password3+"'";
+                String sql= "SELECT * FROM user WHERE Student_Number='"+ username+"' and Password='"+password3+"'";
                 ResultSet rs = stm.executeQuery(sql);
 
                 if(rs.next()){
