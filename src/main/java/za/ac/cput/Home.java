@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class Home extends JFrame implements ActionListener {
     private JPanel panelNorth, panelCenter, panelSouth;
-    private JButton btnCalender, btnTask, btnNotification, btnProgress, btnLogOut;
+    private JButton btnCalender, btnTask, btnNotification, btnProgress, btnLogOut, btnProfile;
     private JLabel lblWelcome;
 
     public Home(){
@@ -23,6 +23,7 @@ public class Home extends JFrame implements ActionListener {
         btnTask = new JButton("View Tasks");
         btnProgress = new JButton("View Progress");
         btnLogOut = new JButton("Log Out");
+        btnProfile = new JButton("Profile");
         lblWelcome = new JLabel("Welcome", SwingConstants.CENTER);
     }
     public void setGUI(){
@@ -30,9 +31,9 @@ public class Home extends JFrame implements ActionListener {
         panelCenter.setLayout(new GridLayout(4,1,0,6));
         panelSouth.setLayout(new GridLayout(1,1));
 
-        panelNorth.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        panelCenter.setBorder(BorderFactory.createEmptyBorder(70,120,70,120));
-        panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,25,250));
+        panelNorth.setBorder(BorderFactory.createEmptyBorder(10,250,0,20));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,120,70,120));
+        panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,20,250));
 
         //setting the GUI Background Color
         panelNorth.setBackground(new Color(0,29,64));
@@ -53,24 +54,32 @@ public class Home extends JFrame implements ActionListener {
         btnCalender.setBackground(new Color(250, 134, 0));
         btnCalender.setForeground(Color.white);
 
-        btnLogOut.setPreferredSize(new Dimension(70, 40));
+        btnLogOut.setPreferredSize(new Dimension(1, 40));
         btnLogOut.setContentAreaFilled(false);
-        btnLogOut.setBorder(null);
-        btnLogOut.setBorderPainted(false);
+        //btnLogOut.setBorder(null);
+        //btnLogOut.setBorderPainted(false);
         btnLogOut.setForeground(Color.white);
+
+        btnProfile.setPreferredSize(new Dimension(1, 40));
+        btnProfile.setContentAreaFilled(false);
+        //btnProfile.setBorder(null);
+        //btnProfile.setBorderPainted(false);
+        btnProfile.setForeground(Color.white);
 
         panelCenter.add(btnCalender);
         panelCenter.add(btnTask);
         panelCenter.add(btnNotification);
         panelCenter.add(btnProgress);
 
-        panelSouth.add(btnLogOut);
+        panelNorth.add(btnProfile);
+        panelNorth.add(btnLogOut);
 
         btnCalender.addActionListener(this);
         btnProgress.addActionListener(this);
         btnNotification.addActionListener(this);
         btnTask.addActionListener(this);
         btnLogOut.addActionListener(this);
+        btnProfile.addActionListener(this);
 
         this.add(panelNorth, BorderLayout.NORTH);
         this.add(panelCenter, BorderLayout.CENTER);
@@ -99,6 +108,12 @@ public class Home extends JFrame implements ActionListener {
         }
         else if (e.getActionCommand().equals("View Progress")) {
             JOptionPane.showMessageDialog(null, "Showing progress");
+        }
+        else if (e.getActionCommand().equals("Profile")) {
+            JOptionPane.showMessageDialog(null, "Accessing Profile Details");
+            Profile profile = new Profile();
+            profile.setProfileGUI();
+            this.dispose();
         }
         else if (e.getActionCommand().equals("Log Out")) {
             this.dispose();

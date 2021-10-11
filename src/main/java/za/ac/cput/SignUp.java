@@ -1,4 +1,5 @@
 package za.ac.cput;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
@@ -10,13 +11,15 @@ import javax.swing.*;
 public class SignUp extends JFrame implements ActionListener{
 
     private JPanel panelNorth, panelCenter, panelSouth;
-    private JLabel lblUsername, lblPassword, lblPasswordConfirm, lblImage;
-    private JTextField userName;
+    private JLabel lblUsername, lblPassword, lblPasswordConfirm, lblImage, lblFirstname, lblLastname, lblEmail;
+    private JTextField userName, firstName, lastName, email;
     private JPasswordField password, confirmPassword;
     private JButton btnSubmit, btnLogin;
     private ImageIcon image;
-    private JLabel lblErrorOne, lblErrorTwo, lblErrorThree, lblBlank, lblBlankTwo, lblBlankThree, lblBlankFour, lblBlankFive;
+    private JLabel lblErrorOne, lblErrorTwo, lblErrorThree, lblBlank, lblBlankTwo, lblBlankThree, lblBlankFour, lblBlankFive, lblErrorFour,
+            lblErrorFive, lblErrorSix;
     private JCheckBox checkBox;
+    protected static String nUser;
 
     public SignUp(){
         super("Sign Up");
@@ -36,16 +39,25 @@ public class SignUp extends JFrame implements ActionListener{
         lblErrorOne = new JLabel("*Student Number Required");
         lblErrorTwo = new JLabel("*Password Required");
         lblErrorThree = new JLabel("*Password Required");
+        lblErrorFour = new JLabel("*First Name Required");
+        lblErrorFive = new JLabel("*Last Name Required");
+        lblErrorSix = new JLabel("*Email Required");
         lblBlank = new JLabel("");
         lblBlankTwo = new JLabel("");
         lblBlankThree = new JLabel("");
         lblBlankFour = new JLabel("");
         lblBlankFive = new JLabel("");
         checkBox = new JCheckBox("Show Password");
+        firstName = new JTextField();
+        lastName = new JTextField();
+        email = new JTextField();
+        lblFirstname = new JLabel("First Name: ", SwingConstants.RIGHT);
+        lblLastname = new JLabel("Last Name: ", SwingConstants.RIGHT);
+        lblEmail = new JLabel("Email: ", SwingConstants.RIGHT);
     }
     public void setSignUp(){
         panelNorth.setLayout(new GridLayout(1,1));
-        panelCenter.setLayout(new GridLayout(5,3, 3, 4));
+        panelCenter.setLayout(new GridLayout(8,3, 3, 4));
         panelSouth.setLayout(new GridLayout(1,1));
 
         panelNorth.setBorder(BorderFactory.createEmptyBorder(25,25,5,25));
@@ -56,6 +68,9 @@ public class SignUp extends JFrame implements ActionListener{
         lblErrorOne.setForeground(Color.RED);
         lblErrorTwo.setForeground(Color.RED);
         lblErrorThree.setForeground(Color.RED);
+        lblErrorFour.setForeground(Color.RED);
+        lblErrorFive.setForeground(Color.RED);
+        lblErrorSix.setForeground(Color.RED);
 
         //remove border of show button
         checkBox.setContentAreaFilled(false);
@@ -78,6 +93,9 @@ public class SignUp extends JFrame implements ActionListener{
         panelSouth.setBackground(new Color(0,29,64));
 
         lblUsername.setForeground(Color.white);
+        lblFirstname.setForeground(Color.white);
+        lblLastname.setForeground(Color.white);
+        lblEmail.setForeground(Color.white);
         lblPassword.setForeground(Color.white);
         lblPasswordConfirm.setForeground(Color.white);
         checkBox.setForeground(Color.white);
@@ -90,6 +108,9 @@ public class SignUp extends JFrame implements ActionListener{
         lblErrorOne.setVisible(false);
         lblErrorTwo.setVisible(false);
         lblErrorThree.setVisible(false);
+        lblErrorFour.setVisible(false);
+        lblErrorFive.setVisible(false);
+        lblErrorSix.setVisible(false);
 
         //Adding necessary components to GUI
         panelNorth.add(lblImage);
@@ -97,6 +118,15 @@ public class SignUp extends JFrame implements ActionListener{
         panelCenter.add(lblUsername);
         panelCenter.add(userName);
         panelCenter.add(lblErrorOne);
+        panelCenter.add(lblFirstname);
+        panelCenter.add(firstName);
+        panelCenter.add(lblErrorFour);
+        panelCenter.add(lblLastname);
+        panelCenter.add(lastName);
+        panelCenter.add(lblErrorFive);
+        panelCenter.add(lblEmail);
+        panelCenter.add(email);
+        panelCenter.add(lblErrorSix);
         panelCenter.add(lblPassword);
         panelCenter.add(password);
         panelCenter.add(lblErrorTwo);
@@ -153,11 +183,27 @@ public class SignUp extends JFrame implements ActionListener{
             String password2 = Arrays.toString(confirmPassword.getPassword());
 
             //if statement to project error's in case of empty fields
-            if(userName.getText().isEmpty() || input.length == 0 || confirmation.length == 0){
+            if(userName.getText().isEmpty() || input.length == 0 || confirmation.length == 0 || firstName.getText().isEmpty()
+            || lastName.getText().isEmpty() || email.getText().isEmpty()){
                 if(userName.getText().isEmpty()){
                     lblErrorOne.setVisible(true);
                 }else{
                     lblErrorOne.setVisible(false);
+                }
+                if(firstName.getText().isEmpty()){
+                    lblErrorFour.setVisible(true);
+                }else{
+                    lblErrorFour.setVisible(false);
+                }
+                if(lastName.getText().isEmpty()){
+                    lblErrorFive.setVisible(true);
+                }else{
+                    lblErrorFive.setVisible(false);
+                }
+                if(email.getText().isEmpty()){
+                    lblErrorSix.setVisible(true);
+                }else{
+                    lblErrorSix.setVisible(false);
                 }
                 if(input.length == 0){
                     lblErrorTwo.setVisible(true);
@@ -181,11 +227,15 @@ public class SignUp extends JFrame implements ActionListener{
                 try{
                     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tableinfo?autoReconnect=true&useSSL=false", "root", "");
                     String un = userName.getText();
+                    String fn = firstName.getText();
+                    String ln = lastName.getText();
+                    String em = email.getText();
                     String pd = password.getText();
+                    nUser = un;
 
                     Statement stm = con.createStatement();
 
-                    String sql= "INSERT INTO login" + "(Student_Number, Password)" + "VALUES('" +un+"', '"+pd+"')";
+                    String sql= "INSERT INTO user" + "(Student_Number, FirstName, LastName, Email, Password)" + "VALUES('" +un+"','" +fn+"','" +ln+"','" +em+"', '"+pd+"')";
                     stm.executeUpdate(sql);
                     dispose();
                     Home home = new Home();
