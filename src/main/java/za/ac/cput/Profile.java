@@ -17,7 +17,7 @@ public class Profile  extends JFrame implements ActionListener {
     private JCheckBox editDet;
     private JButton btnSave, btnBack;
     String user = Login.uN;
-    String newUser = SignUp.nUser;
+    //String newUser = SignUp.nUser;
 
     public Profile(){
         super("Profile");
@@ -48,9 +48,9 @@ public class Profile  extends JFrame implements ActionListener {
         panelCenter.setBorder(BorderFactory.createEmptyBorder(50,25,25,25));
         panelSouth.setBorder(BorderFactory.createEmptyBorder(0,25,25,25));
 
-       // btnBack.setIcon(backIcon);
-      //  btnBack.setPreferredSize(new Dimension(0, 40));
-       // btnBack.setLayout(null);
+        // btnBack.setIcon(backIcon);
+        //  btnBack.setPreferredSize(new Dimension(0, 40));
+        // btnBack.setLayout(null);
 
         btnSave.setPreferredSize(new Dimension(0, 30));
 
@@ -119,31 +119,6 @@ public class Profile  extends JFrame implements ActionListener {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tableinfo?autoReconnect=true&useSSL=false", "root", "");
             Statement stm = con.createStatement();
             String sql = "SELECT * FROM user where Student_Number='" +user+ "'";
-            ResultSet rs = stm.executeQuery(sql);
-
-            while(rs.next()){
-                String stdNo = rs.getString(1);
-                String fName = rs.getString(2);
-                String lName = rs.getString(3);
-                String eMessage = rs.getString(4);
-                String passwordUsed = rs.getString(5);
-
-                studentNo.setText(stdNo);
-                firstName.setText(fName);
-                lastName.setText(lName);
-                email.setText(eMessage);
-                password.setText(passwordUsed);
-            }
-            con.close();
-            stm.close();
-        }
-        catch(Exception ev){
-            System.out.println(ev.getMessage());
-        }
-        try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tableinfo?autoReconnect=true&useSSL=false", "root", "");
-            Statement stm = con.createStatement();
-            String sql = "SELECT * FROM user where Student_Number='" +newUser+ "'";
             ResultSet rs = stm.executeQuery(sql);
 
             while(rs.next()){
