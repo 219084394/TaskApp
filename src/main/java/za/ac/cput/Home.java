@@ -28,8 +28,8 @@ public class Home extends JFrame implements ActionListener {
         panelCenter.setLayout(new GridLayout(4,1,0,6));
         panelSouth.setLayout(new GridLayout(1,1));
 
-        panelNorth.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));
-        panelCenter.setBorder(BorderFactory.createEmptyBorder(70,120,70,120));
+        panelNorth.setBorder(BorderFactory.createEmptyBorder(10,250,0,20));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,120,70,120));
         panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,20,250));
 
         //setting the GUI Background Color
@@ -51,16 +51,16 @@ public class Home extends JFrame implements ActionListener {
         btnCalender.setBackground(new Color(250, 134, 0));
         btnCalender.setForeground(Color.white);
 
-        btnLogOut.setPreferredSize(new Dimension(70, 40));
+        btnLogOut.setPreferredSize(new Dimension(1, 40));
         btnLogOut.setContentAreaFilled(false);
-        btnLogOut.setBorder(null);
-        btnLogOut.setBorderPainted(false);
+        //btnLogOut.setBorder(null);
+        //btnLogOut.setBorderPainted(false);
         btnLogOut.setForeground(Color.white);
 
-        btnProfile.setPreferredSize(new Dimension(70, 40));
+        btnProfile.setPreferredSize(new Dimension(1, 40));
         btnProfile.setContentAreaFilled(false);
-        btnProfile.setBorder(null);
-        btnProfile.setBorderPainted(false);
+        //btnProfile.setBorder(null);
+        //btnProfile.setBorderPainted(false);
         btnProfile.setForeground(Color.white);
 
         panelCenter.add(btnCalender);
@@ -69,7 +69,7 @@ public class Home extends JFrame implements ActionListener {
         panelCenter.add(btnProgress);
 
         panelNorth.add(btnProfile);
-        panelSouth.add(btnLogOut);
+        panelNorth.add(btnLogOut);
 
         btnCalender.addActionListener(this);
         btnProgress.addActionListener(this);
