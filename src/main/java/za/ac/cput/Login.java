@@ -19,7 +19,7 @@ public class Login extends JFrame implements ActionListener{
     private ImageIcon image;
     private JLabel lblErrorOne, lblErrorTwo, lblBlank, lblBlankTwo, lblBlankThree, lblBlankFour, lblBlankFive;
     private JCheckBox checkBox;
-    protected static String uN;
+    //protected static String uN;
 
     public Login(){
         super("Login");
