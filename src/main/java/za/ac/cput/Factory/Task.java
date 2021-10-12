@@ -29,6 +29,7 @@ public class Task {
     String z = Login.uN;
 
     public void setGUI(){
+
         JFrame frame = new JFrame("Tasks");
         frame.setContentPane(new Task().taskPnl);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
