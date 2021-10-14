@@ -19,7 +19,7 @@ public class SignUp extends JFrame implements ActionListener{
     private JLabel lblErrorOne, lblErrorTwo, lblErrorThree, lblBlank, lblBlankTwo, lblBlankThree, lblBlankFour, lblBlankFive, lblErrorFour,
             lblErrorFive, lblErrorSix;
     private JCheckBox checkBox;
-    protected static String nUser;
+    //public static String nUser;
 
     public SignUp(){
         super("Sign Up");
@@ -231,15 +231,18 @@ public class SignUp extends JFrame implements ActionListener{
                     String ln = lastName.getText();
                     String em = email.getText();
                     String pd = password.getText();
-                    nUser = un;
+                    //nUser = un;
 
                     Statement stm = con.createStatement();
 
                     String sql= "INSERT INTO user" + "(Student_Number, FirstName, LastName, Email, Password)" + "VALUES('" +un+"','" +fn+"','" +ln+"','" +em+"', '"+pd+"')";
                     stm.executeUpdate(sql);
                     dispose();
-                    Home home = new Home();
-                    home.setGUI();
+                    Login login = new Login();
+                    login.setLogin();
+                    //Home home = new Home();
+                    //home.setGUI();
+                    JOptionPane.showMessageDialog(null, "User successfully registered, time to Login!!!");
                     con.close();
 
                 }catch(Exception ev){
