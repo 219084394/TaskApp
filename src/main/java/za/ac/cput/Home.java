@@ -1,6 +1,7 @@
 package za.ac.cput;
 import za.ac.cput.Factory.MyCourse;
 import za.ac.cput.Factory.Task;
+import za.ac.cput.calendar.CalendarMain;
 
 import javax.swing.*;
 import java.awt.*;
@@ -95,6 +96,9 @@ public class Home extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("View Calender")) {
             JOptionPane.showMessageDialog(null, "Opening calender");
+            CalendarMain cm = new CalendarMain();
+            cm.setVisible(true);
+
         }
         else if (e.getActionCommand().equals("View Notifications")) {
             JOptionPane.showMessageDialog(null, "Viewing notifications");

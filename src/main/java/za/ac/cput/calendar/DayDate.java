@@ -12,7 +12,6 @@ import java.awt.Component;
 import java.util.Calendar;
 import java.util.*;
 
-import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
 
 
 public class DayDate extends javax.swing.JLayeredPane {
@@ -498,12 +497,7 @@ public class DayDate extends javax.swing.JLayeredPane {
 
     private void blocks8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blocks8ActionPerformed
         Task t = new Task();
-        t.show();
-        try {
-            dispose();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        t.setGUI();
     }//GEN-LAST:event_blocks8ActionPerformed
     /**/
 
