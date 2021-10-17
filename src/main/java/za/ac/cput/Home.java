@@ -28,11 +28,11 @@ public class Home extends JFrame implements ActionListener {
     }
     public void setGUI(){
         panelNorth.setLayout(new GridLayout(1,1));
-        panelCenter.setLayout(new GridLayout(4,1,0,6));
+        panelCenter.setLayout(new GridLayout(3,1,0,6));
         panelSouth.setLayout(new GridLayout(1,1));
 
-        panelNorth.setBorder(BorderFactory.createEmptyBorder(10,250,0,20));
-        panelCenter.setBorder(BorderFactory.createEmptyBorder(50,120,70,120));
+        panelNorth.setBorder(BorderFactory.createEmptyBorder(20,120,0,120));
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(30,120,70,120));
         panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,20,250));
 
         //setting the GUI Background Color
@@ -69,7 +69,7 @@ public class Home extends JFrame implements ActionListener {
         panelCenter.add(btnCalender);
         panelCenter.add(btnTask);
         panelCenter.add(btnNotification);
-        panelCenter.add(btnProgress);
+        //panelCenter.add(btnProgress);
 
         panelNorth.add(btnProfile);
         panelNorth.add(btnLogOut);
