@@ -31,9 +31,9 @@ public class Home extends JFrame implements ActionListener {
         panelCenter.setLayout(new GridLayout(3,1,0,6));
         panelSouth.setLayout(new GridLayout(1,1));
 
-        panelNorth.setBorder(BorderFactory.createEmptyBorder(20,120,0,120));
+        panelNorth.setBorder(BorderFactory.createEmptyBorder(50,120,0,120));
         panelCenter.setBorder(BorderFactory.createEmptyBorder(30,120,70,120));
-        panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,20,250));
+        panelSouth.setBorder(BorderFactory.createEmptyBorder(0,250,0,250));
 
         //setting the GUI Background Color
         panelNorth.setBackground(new Color(0,29,64));
