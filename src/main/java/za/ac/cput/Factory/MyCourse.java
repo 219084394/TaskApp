@@ -112,14 +112,7 @@ public class MyCourse {
                 //lectId = rs.getString("LectId");
                 myCourseCode.setText(rs.getString("CourseCode"));
                 myCourseName.setText(rs.getString("CourseName"));
-
             }
-       /*     String lecturer = lectId;
-            String sql1 = "select LectEmail from lecturer where course.LectCode = '"+lecturer+"' && lecturer.LectCode = '"+lecturer+"'";
-            pst1 = con2.prepareStatement(sql1);
-            pst1.executeQuery();
-
-            lectEmailTxt.setText(rs.getString("LectEmail"));*/
 
         }catch(Exception e){}
     }
@@ -128,8 +121,6 @@ public class MyCourse {
         String course = myCourseCode.getText();
         String mail = lectEmailTxt.getText();
         String lecturer = "select LectCode from course where CourseCode = '"+course+"'";
-
-
 
         try{
             pst = con2.prepareStatement(lecturer);
@@ -151,6 +142,18 @@ public class MyCourse {
                 String box = lectEmailTxt.getText();
                 crsLctBox.setSelectedItem(box);
                 lectEmailTxt.setText("");
+            }
+        }catch(Exception e){}
+    }
+
+    public void getLecId(){
+        String mail = lectEmailTxt.getText();
+        String sql = "select LectCode from lecturer where LectEmail = '"+mail+"'";
+        try{
+            pst = con2.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                lectEmailTxt.setText(rs.getString("LectCode"));
             }
         }catch(Exception e){}
     }
@@ -203,7 +206,6 @@ public class MyCourse {
                     }else {
                         pst = con2.prepareStatement("INSERT INTO course(CourseCode,LectCode,CourseName) VALUES (?,( SELECT LectCode FROM lecturer WHERE LectEmail = '"+lectEmail+"'), ?)");
                         pst.setString(1,courseCode);
-                        //pst.setString(2,lectCode);
                         pst.setString(2,courseName);
                         pst1 = con2.prepareStatement("INSERT INTO user_course(CourseCode,Student_Number) VALUES (?,'"+z+"')");
                         pst1.setString(1,courseCode);
@@ -324,6 +326,58 @@ public class MyCourse {
                     myCourseName.setText("");
                     crsLctBox.setSelectedItem(null);
                     myCourseName.requestFocus();
+                }
+            }
+        });
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String courseName, lectEmail,courseCode,lectId;
+
+                courseName = myCourseName.getText();
+                lectEmail = crsLctBox.getSelectedItem().toString();
+                courseCode = myCourseCode.getText();
+                /*getLecId();
+                lectId = lectEmailTxt.getText();*/
+
+                try{
+                    pst = con2.prepareStatement("update course set CourseCode = '"+courseCode+"',CourseName = '"+courseName+"' where CourseCode = '"+courseCode+"'");
+                    pst.executeUpdate();
+                    if(courseName.equals("") && courseCode.equals("") && lectEmail.equals("")){
+                        JOptionPane.showMessageDialog(null, "Please enter your course details");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Course Updated");
+                    }
+                    table_load();
+                    myCourseName.setText("");
+                    crsLctBox.setSelectedItem(null);
+                    myCourseCode.setText("");
+                    myCourseName.requestFocus();
+                }catch(SQLException e1){
+                    e1.printStackTrace();
+                }
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String courseCode = myCourseCode.getText();
+
+                try{
+                    pst = con2.prepareStatement("delete from user_course where CourseCode = '"+courseCode+"' and Student_Number = '"+z+"'");
+                    pst.executeUpdate();
+                    if(courseCode.equals("")){
+                        JOptionPane.showMessageDialog(null, "Please enter a course code");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Course Deleted");
+                    }
+                    table_load();
+                    myCourseCode.setText("");
+                    myCourseName.setText("");
+                    crsLctBox.setSelectedItem(null);
+                    myCourseName.requestFocus();
+                }catch(SQLException e1){
+                    e1.printStackTrace();
                 }
             }
         });

@@ -19,7 +19,7 @@ public class Home extends JFrame implements ActionListener {
         panelCenter = new JPanel();
         panelSouth = new JPanel();
         btnCalender = new JButton("View Calender");
-        btnNotification = new JButton("View Notifications");
+        btnNotification = new JButton("My Courses");
         btnTask = new JButton("View Tasks");
         btnProgress = new JButton("View Progress");
         btnLogOut = new JButton("Log Out");
@@ -96,8 +96,8 @@ public class Home extends JFrame implements ActionListener {
         if (e.getActionCommand().equals("View Calender")) {
             JOptionPane.showMessageDialog(null, "Opening calender");
         }
-        else if (e.getActionCommand().equals("View Notifications")) {
-            JOptionPane.showMessageDialog(null, "Viewing notifications");
+        else if (e.getActionCommand().equals("My Courses")) {
+            JOptionPane.showMessageDialog(null, "Viewing courses");
             MyCourse myCourse = new MyCourse();
             myCourse.setGUI();
         }
