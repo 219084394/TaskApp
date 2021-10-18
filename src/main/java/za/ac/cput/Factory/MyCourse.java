@@ -290,6 +290,7 @@ public class MyCourse {
                         JOptionPane.showMessageDialog(null, "Lecturer Updated");
                     }
                     table_load();
+                    updateComboBox();
                     lectFirstName.setText("");
                     lectLastName.setText("");
                     lectEmailTxt.setText("");
